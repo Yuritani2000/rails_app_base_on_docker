@@ -10,10 +10,9 @@ if ! id -u appuser > /dev/null 2>&1; then
   useradd -u $USER_ID -g $GROUP_ID -m -s /bin/bash appuser 2>/dev/null || true
 fi
 
-
-# bundleとsample_appディレクトリの権限をappuserに変更
+# bundleとsample_appディレクトリの権限をappuserに変更(.gitディレクトリを含めないようにしている)
 chown -R appuser:appuser /usr/local/bundle
-chown -R appuser:appuser /sample_app
+find . -mindepth 1 -maxdepth 1 ! -name ".*" -exec chown -R appuser:appuser {} +
 
 
 # Rails特有の問題を解決するためのコマンド
