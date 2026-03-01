@@ -14,14 +14,7 @@ RUN apt-get update -qq \
     && curl -fsSL https://bun.sh/install | bash \
     && export BUN_INSTALL="$HOME/.bun" \
     && export PATH="$BUN_INSTALL/bin:$PATH" \
-    && bun --version \
-    && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash \
-    && export NVM_DIR="$HOME/.nvm" \
-    && \. "$NVM_DIR/nvm.sh" \
-    && nvm install 24 \
-    && node -v \
-    && corepack enable yarn \
-    && yarn -v
+    && bun --version
 
 RUN mkdir /sample_app
 WORKDIR /sample_app
